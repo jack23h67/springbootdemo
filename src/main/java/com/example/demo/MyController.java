@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,5 +37,13 @@ public class MyController {
 		System.out.println("header-info: "  + info);
 		System.out.println("Content-Type: " + contentType);
 		return "Hello test3";
+	}
+	
+	@RequestMapping("/test4/{id}/{name}")
+	public String test4(@PathVariable Integer id,
+			            @PathVariable String name) {
+		System.out.println("path id: " + id);
+		System.out.println("path name:" + name);
+		return "Hello test4";
 	}
 }
