@@ -1,5 +1,8 @@
 package com.example.demo;
 
+
+import java.util.Date;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,9 +14,11 @@ public class MyAspect {
 	
 	@Around("execution (* com.example.demo.HpPrinter.*(..))")
 	public Object around(ProceedingJoinPoint pjp) throws Throwable {
-		System.out.println("I'm around Before");
+		Date start = new Date();
 		Object obj = pjp.proceed();
-		System.out.println("I'm around After");
+		Date end = new Date();
+		long time = end.getTime() - start.getTime();
+		System.out.println("總共執行了：" + time + "ms");
 		return obj;
 	}
 }
