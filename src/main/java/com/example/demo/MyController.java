@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,5 +26,15 @@ public class MyController {
 		System.out.println("student id:"   + student.getId());
 		System.out.println("student name:" + student.getName());
 		return "Hello test2";
+	}
+	
+	
+	@RequestMapping("/test3")
+	public String test3(@RequestHeader(name = "header-info")  String info,
+			            @RequestHeader(name = "Content-Type",
+			                           defaultValue = "application/json") String contentType) {
+		System.out.println("header-info: "  + info);
+		System.out.println("Content-Type: " + contentType);
+		return "Hello test3";
 	}
 }
