@@ -14,53 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MyController {
 
-	@RequestMapping("/test001")
-	public String test001() {
-		throw new RuntimeException("test001 error");
-	}
-	
-	@RequestMapping("/test002")
-	public String test002() {
-		throw new IllegalArgumentException("test002 error");
-	}
-	
-	@RequestMapping("/test01")
-	public ResponseEntity<String> test01() {
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Hello World");	
-	}
-	
 	@RequestMapping("/test1")
-	public String test1(@RequestParam Integer id,
-			            @RequestParam(required=false) String  name,
-			            @RequestParam(defaultValue="10") Integer age) {
-		System.out.println("id:" + id);
-		System.out.println("name:" + name);
-		System.out.println("age:" + age);
-		return "Hello test1";	
+	public String test1() {
+		System.out.println("執行 test1 方法");
+		return "Hello test1";
 	}
 	
 	@RequestMapping("/test2")
-	public String test2(@RequestBody Student student) {
-		System.out.println("student id:"   + student.getId());
-		System.out.println("student name:" + student.getName());
+	public String test2() {
+		System.out.println("執行 test2 方法");
 		return "Hello test2";
 	}
 	
 	
-	@RequestMapping("/test3")
-	public String test3(@RequestHeader(name = "header-info")  String info,
-			            @RequestHeader(name = "Content-Type",
-			                           defaultValue = "application/json") String contentType) {
-		System.out.println("header-info: "  + info);
-		System.out.println("Content-Type: " + contentType);
-		return "Hello test3";
-	}
 	
-	@RequestMapping("/test4/{id}/{name}")
-	public String test4(@PathVariable Integer id,
-			            @PathVariable String name) {
-		System.out.println("path id: " + id);
-		System.out.println("path name:" + name);
-		return "Hello test4";
-	}
+	
 }
