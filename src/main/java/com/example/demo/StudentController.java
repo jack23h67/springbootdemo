@@ -66,7 +66,24 @@ public class StudentController {
 		
 		return slist;
 	}
-
+	
+	@GetMapping("/students/{studentId}")
+	public Student select2(@PathVariable Integer studentId) {
+		String sql = "SELECT id, name FROM student WHERE id = :studentId";
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("studentId", studentId);
+		
+		List<Student> slist = namedParameterJdbcTemplate.query(sql,map, new StudentRowMapper());
+		
+		if(slist.size()>0) {
+			return slist.get(0);
+		}else {
+			return null;
+		}
+		
+	}
+	
 	@DeleteMapping("/students/{studentId}")
 	public String delete(@PathVariable Integer studentId) {
 		String sql = "DELETE FROM student WHERE id = :studentId";
