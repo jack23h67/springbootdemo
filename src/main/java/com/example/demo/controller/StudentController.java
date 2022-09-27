@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,11 +16,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.Student;
+import com.example.demo.StudentRowMapper;
+import com.example.demo.service.StudentService;
+
 @RestController
 public class StudentController {
 
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
+	@Autowired
+	private StudentService studentService;
 	
 	@PostMapping("/students")
 	public String insert(@RequestBody Student student) {
@@ -69,19 +76,7 @@ public class StudentController {
 	
 	@GetMapping("/students/{studentId}")
 	public Student select2(@PathVariable Integer studentId) {
-		String sql = "SELECT id, name FROM student WHERE id = :studentId";
-		
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("studentId", studentId);
-		
-		List<Student> slist = namedParameterJdbcTemplate.query(sql,map, new StudentRowMapper());
-		
-		if(slist.size()>0) {
-			return slist.get(0);
-		}else {
-			return null;
-		}
-		
+		return studentService.getById(studentId);
 	}
 	
 	@DeleteMapping("/students/{studentId}")
