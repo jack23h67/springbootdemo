@@ -1,11 +1,18 @@
 package com.example.demo;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CalTest {
 
+	@Disabled
 	@Test
 	public void testAdd() {
 		Cal cal = new Cal();
@@ -23,6 +30,7 @@ public class CalTest {
 		assertEquals("onetwo", rs);
 	}
 
+	@DisplayName("測試除法問題")
 	@Test
 	public void testDivide() {
 		Cal cal = new Cal();
