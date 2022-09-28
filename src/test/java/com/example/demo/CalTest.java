@@ -10,7 +10,10 @@ public class CalTest {
 	public void testAdd() {
 		Cal cal = new Cal();
 		int rs = cal.add(3,4);
-		assertEquals(7,rs);
+		assertNotNull(rs);
+		assertEquals(7, rs);
+		assertTrue(rs > 1);
+		assertFalse(rs < 1);
 	}
 
 	@Test
@@ -20,4 +23,12 @@ public class CalTest {
 		assertEquals("onetwo", rs);
 	}
 
+	@Test
+	public void testDivide() {
+		Cal cal = new Cal();
+		assertThrows(ArithmeticException.class, () -> {
+			cal.divide(12, 0);
+		});
+	}
+	
 }

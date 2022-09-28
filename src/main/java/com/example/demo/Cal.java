@@ -7,4 +7,7 @@ public class Cal {
 	public String conStr(String A, String B) {
 		return A + B;
 	}
+	public int divide(int x, int y) {
+		return x / y;
+	}
 }
