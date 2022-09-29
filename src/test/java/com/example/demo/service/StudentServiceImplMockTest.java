@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import com.example.demo.dao.StudentDao;
 import com.example.demo.model.Student;
@@ -18,7 +19,8 @@ public class StudentServiceImplMockTest {
 	@Autowired
 	private StudentService studentService;
 	
-	@MockBean
+	//@SpyBean  //仍舊是正常的Bean，沒有定義的方法，預設返回null
+	@MockBean   //產生一個假的Bean，只替換其中幾個方法，沒有定義的方法，預設返回真實的方法
 	private StudentDao studentDao;
 	
 	@Test
